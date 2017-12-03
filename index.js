@@ -15,7 +15,7 @@ if (cluster.isMaster){
     var invitesLevel = new EnmapLevel({name:"invites"})
     var invites = new Enmap({provider:invitesLevel})
     bot.invites = invites;
-
+    const requiredMembersForMessage = 250
     var commands = []
 
     bot.on("message", (m)=>{
@@ -54,6 +54,14 @@ if (cluster.isMaster){
     })
     process.on("exit", ()=>{
         bot.invites.db.close()
+    })
+    bot.on("guildMemberAdd", (member)=>{
+        member.guild.members.fetch()
+        if (member.guild.members.size() % requiredMembersForMessage == 0){
+            var ch = member.guild.channels.find("name", "milestones")
+            var nextGoal = member.guild.members.size() + requiredMembersForMessage;
+            ch.send("We've reached **" + member.guild.members.size() + "**! Let's try to get to **" + nextGoal + "**!")
+        }
     })
     bot.login(config.token)
 }
