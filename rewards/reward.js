@@ -1,7 +1,8 @@
 module.exports = class Reward {
-    constructor(name, invites){
+    constructor(name, invites,shortname){
         this.name = name
         this.invites = invites
+        this.shortname = shortname;
     }
     canClaimReward(member, invites){
         if (invites >= this.invites){
@@ -11,5 +12,11 @@ module.exports = class Reward {
     }
     getName(){
         return this.name
+    }
+    getRequiredInvites(){
+        return this.invites
+    }
+    getShortName(){
+        return this.shortname
     }
 }

@@ -2,10 +2,7 @@ const Discord = require("discord.js")
 const fs = require ("fs")
 const Enmap = require("enmap")
 const EnmapLevel = require("enmap-level")
-var config = {
-    token: "Mzg2NjIyMzQ1NTEyNzQ3MDE5.DQSlpA.2eS0TdRdQVzVW8DJZhTi8keQLyc",
-    prefix: "sferewards>"
-}
+var config = require ("./config.js")
 var bot = new Discord.Client();
 
 var invitesLevel = new EnmapLevel({name:"invites"})
@@ -26,7 +23,7 @@ bot.on("message", (m)=>{
             try {
                 commands[a].execute(m, m.content.split(" ").slice(1), bot)  
             } catch (e){
-                //console.log("[error] " + e.stack)
+                console.log("[error] " + e.stack)
                 m.reply("an internal error occurred while executing that command, please try again later.")
             } 
         }
@@ -45,5 +42,10 @@ bot.on("ready", ()=>{
 bot.on("error", (e)=>{
     console.error("[error/client] " + e.stack)
 })
-
+process.on("error", (e)=>{
+    console.error("[uncaught error] " + e.stack)
+})
+process.on("exit", ()=>{
+    bot.invites.db.close()
+})
 bot.login(config.token)

@@ -1,7 +1,7 @@
 const Reward = require("./reward.js")
 module.exports = class VoiceChannelReward extends Reward {
     constructor(){
-        super("Voice Channel Reward", 30)
+        super("Voice Channel Reward", 30, "voicechannel")
     }
     claimReward(user){
         var guild = user.guild;
@@ -15,14 +15,14 @@ module.exports = class VoiceChannelReward extends Reward {
         }
         guild.createChannel(user.user.username + "'s Channel", "voice").then((c)=>{
             c.overwritePermissions(user.id, {
-                MANAGE_CHANNEL: true,
-                MANAGE_PERMISSIONS: true
+                MANAGE_CHANNELS: true,
+                MANAGE_ROLES: true
             }, "Claming reward").catch((e)=>{
                 console.log("[error] " + e.stack)  
             });
             c.edit({
-                parent_id: "386619790589952010"
-            }, "Categorize the channel under the correct category").catch((e)=>console.log)
+                parentID: "386619790589952010"
+            }, "Categorize the channel under the correct category").catch((e)=>{console.log(e)})
         }).catch((e)=>{
             console.error("[error] " + e.stack)
         })

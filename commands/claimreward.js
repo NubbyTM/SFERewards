@@ -1,4 +1,5 @@
 const VoiceChannelReward = require("./../rewards/VoiceChannelReward.js")
+const RoleReward = require("./../rewards/RoleReward.js")
 module.exports = {
     getName: ()=>{
         return "claimreward";
@@ -16,12 +17,16 @@ module.exports = {
             var inv = i.get(bot.invites.get(m.author.id))
             var uses = inv.uses;
             var reward = new VoiceChannelReward();
-            switch (args[0]){
-                case "voiceChannel":
+            switch (args[0].toLowerCase()){
+                case "voicechannel":
                     reward = new VoiceChannelReward();
+                    break
+                case "role":
+                    reward = new RoleReward();
                     break
                 default:
                     m.channel.send("That is not a valid reward type.")
+                    return
                     break
             }
             if (reward.canClaimReward(m, uses)){
