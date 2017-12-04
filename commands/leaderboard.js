@@ -4,7 +4,7 @@ module.exports = {
         return "leaderboard";
     },
     execute: (m, args, bot)=>{
-        function sortAlg(a,b){
+        /*function sortAlg(a,b){
             return a.uses-b.uses;
         }
         m.guild.fetchInvites().then((invites)=>{
@@ -44,6 +44,7 @@ module.exports = {
                     m.channel.send("Not enough invites registered to calculate positions")
                 }
             }, 1000)
-        })
+        })*/
+        m.channel.send("Coming soon!")
     }
 }
