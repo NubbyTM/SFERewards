@@ -9,7 +9,8 @@ module.exports = {
             return
         }
         m.guild.channels.find("name", "all-members").createInvite({
-            unique: true
+            unique: true,
+            maxAge: 0
         }, "Invite for a user. custom loves this part.").then((inv)=>{
             m.reply("I've created an invite for you, it should be linked to your account shortly!")
             m.member.send("Specialized Invite: https://discord.gg/" + inv.code)
