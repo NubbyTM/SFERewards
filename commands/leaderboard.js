@@ -10,7 +10,7 @@ module.exports = {
         m.guild.fetchInvites().then((invites)=>{
             var places = [];
             invites.forEach((a, i)=> {
-                if (bot.invites.has(a)){
+                if (bot.invites.hasKey(a)){
                     if (!m.guild.members.find("id", bot.invites.getKey(i.code))){
                         return
                     }
