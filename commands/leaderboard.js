@@ -15,10 +15,10 @@ module.exports = {
                         return
                     }
                     var member = m.guild.members.find("id", bot.invites.get(i.code))
-                    places[places.length++] = {
+                    places.push({
                         name: member,
                         uses: i.uses
-                    }
+                    })
                 }
             });
             setTimeout(()=>{
