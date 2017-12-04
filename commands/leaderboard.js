@@ -9,9 +9,9 @@ module.exports = {
         }
         m.guild.fetchInvites().then((invites)=>{
             var places = [];
-            invites.forEach((i)=> {
-                if (bot.invites.has(i.code)){
-                    if (!m.guild.members.find("id", bot.invites.get(i.code))){
+            invites.forEach((a, i)=> {
+                if (bot.invites.has(a)){
+                    if (!m.guild.members.find("id", bot.invites.get(a))){
                         return
                     }
                     var member = m.guild.members.find("id", bot.invites.get(i.code))
