@@ -11,10 +11,10 @@ module.exports = {
             var places = [];
             invites.forEach((a, i)=> {
                 if (bot.invites.has(a)){
-                    if (!m.guild.members.find("id", bot.invites.get(a))){
+                    if (!m.guild.members.find("id", bot.invites.getKey(i.code))){
                         return
                     }
-                    var member = m.guild.members.find("id", bot.invites.get(i.code))
+                    var member = m.guild.members.find("id", bot.invites.getKey(i.code))
                     places.push({
                         name: member,
                         uses: i.uses
