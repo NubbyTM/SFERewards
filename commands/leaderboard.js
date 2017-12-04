@@ -11,7 +11,7 @@ module.exports = {
             var places = [];
             invites.forEach((a, i)=> {
                 if (bot.invites.hasKey(a)){
-                    if (!m.guild.members.find("id", bot.invites.getKey(i.code))){
+                    if (!m.guild.members.find("id", i.code in bot.invites)){
                         return
                     }
                     var member = m.guild.members.find("id", bot.invites.getKey(i.code))
