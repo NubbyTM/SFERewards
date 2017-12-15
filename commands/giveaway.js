@@ -45,7 +45,7 @@ module.exports = {
                             entries: []
                         }
                         bot.giveaway.set(parts[0].toLowerCase() + "", giveawayObject);
-                        m.guild.channels.find("id", "389479501228277762").send(`A giveaway is being hosted!\n\nHost: ${m.member}\nTitle: **${parts[1]}**\nDescription: **${parts[2]}**\n\nEnter with rewards>giveaway enter ${parts[0].toLowerCase()}`)
+                        m.guild.channels.find("name", "giveaways").send(`A giveaway is being hosted!\n\nHost: ${m.member}\nTitle: **${parts[1]}**\nDescription: **${parts[2]}**\n\nEnter with rewards>giveaway enter ${parts[0].toLowerCase()}`)
                         m.channel.send("Hosting giveaway!");
                     } else {
                         m.channel.send("Invalid command usage. Giveaway title and description required.")
