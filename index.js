@@ -14,7 +14,10 @@ if (cluster.isMaster){
 
     var invitesLevel = new EnmapLevel({name:"invites"})
     var invites = new Enmap({provider:invitesLevel})
+    var giveawayLevel = new EnmapLevel({name:"giveaway"});
+    var giveaway = new Enmap({provider: giveawayLevel})
     bot.invites = invites;
+    bot.giveaway = giveaway;
     const requiredMembersForMessage = 250
     var commands = []
 
