@@ -40,6 +40,20 @@ if (cluster.isMaster){
         }
     })
 
+    bot.on("guildMemberAdd", (m)=>{
+        var channelid = "360462032811851778";
+        if (m.guild.channels.has("id", channelid)){
+            var channel = m.guild.channels.find("id", channelid);
+            var embed = new Discord.MessageEmbed();
+            embed.setTitle("user joined")
+            embed.setDescription("this fancy embed shows that a user joined " + m.guild.name)
+            embed.addField("user", m)
+            embed.setThumbnail(m.user.avatarURL);
+            embed.setColor([0,255,0])
+            channel.send("", {embed})
+        }
+    })
+
     bot.on("ready", ()=>{
         console.log("[log] connected to discord")
         var commandDir = fs.readdirSync("./commands/")
